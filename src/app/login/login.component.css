@@ -221,26 +221,6 @@
     }
   }
   
-  @keyframes shake-shake {
-    0% {
-      transform: translateX(-3px);
-    }
-    20% {
-      transform: translateX(3px);
-    }
-    40% {
-      transform: translateX(-3px);
-    }
-    60% {
-      transform: translateX(3px);
-    }
-    80% {
-      transform: translateX(-3px);
-    }
-    100% {
-      transform: translateX(0px);
-    }
-  }
   .session {
     display: flex;
     flex-direction: row;
@@ -262,6 +242,7 @@
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
   }
+
   .left svg {
     height: 40px;
     width: auto;
