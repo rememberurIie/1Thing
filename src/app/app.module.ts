@@ -10,6 +10,9 @@ import { environment } from '../environments/environment.development';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ResetemailComponent } from './resetemail/resetemail.component';
+import { PostfeedComponent } from './postfeed/postfeed.component';
+import { FeedComponent } from './feed/feed.component';
+import { PostComponent } from './post/post.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { ResetemailComponent } from './resetemail/resetemail.component';
     AppComponent,
     LoginComponent,
     SignupComponent,
-    ResetemailComponent
+    ResetemailComponent,
+    PostfeedComponent,
+    FeedComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

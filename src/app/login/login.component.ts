@@ -33,9 +33,10 @@ export class LoginComponent {
                 password: password,
                 onComplete: (uc) => {
                     alert("Logged in")
+                    this.router.navigate(['feed']);
                 },
                 onFail: (err) => {
-                    alert(err);
+                    alert("Email and password not match!");
                 }
             }
         )
