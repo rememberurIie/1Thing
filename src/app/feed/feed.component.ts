@@ -13,13 +13,18 @@ import { TopbarComponent } from '../topbar/topbar.component';
 export class FeedComponent {
 
   firebasetsAuth: FirebaseTSAuth;
-  private router: Router;
 
-  constructor() { 
-        
-    this.firebasetsAuth = new FirebaseTSAuth();
-    this.router = new Router();
+  constructor(private router: Router) { 
+      this.firebasetsAuth = new FirebaseTSAuth();
+  }
 
+  ngOnInit() {
+      this.firebasetsAuth.getAuth().onAuthStateChanged(user => {
+          if (user) {
+          }else{
+              this.router.navigate(['']);
+          }
+      });
   }
 
 }
