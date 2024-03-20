@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { AuthModule } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 
 @Component({
