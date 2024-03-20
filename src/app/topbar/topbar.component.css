@@ -1,0 +1,37 @@
+/* navbar.component.css */
+
+.navbar {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+    background-color: #b19cd9; /* Pastel purple background color */
+    padding: 20px;
+  }
+  
+  .navbar .logo {
+    /* Style your logo as needed */
+  }
+  
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-links li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .nav-links li:last-child {
+    margin-right: 0;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: white; /* Text color for links */
+    font-weight: bold;
+  }
+  
+  .nav-links li a:hover {
+    color: #ffffff; /* Text color on hover */
+  }
+  

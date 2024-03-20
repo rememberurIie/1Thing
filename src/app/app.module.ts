@@ -13,6 +13,11 @@ import { ResetemailComponent } from './resetemail/resetemail.component';
 import { PostfeedComponent } from './postfeed/postfeed.component';
 import { FeedComponent } from './feed/feed.component';
 import { PostComponent } from './post/post.component';
+import { TopbarComponent } from './topbar/topbar.component';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 @NgModule({
@@ -23,11 +28,15 @@ import { PostComponent } from './post/post.component';
     ResetemailComponent,
     PostfeedComponent,
     FeedComponent,
-    PostComponent
+    PostComponent,
+    TopbarComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [
     provideAnimationsAsync()

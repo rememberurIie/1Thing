@@ -1,23 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { AuthModule } from '@angular/fire/auth';
+import firebase from 'firebase/app';
 
 @Component({
-selector: 'app-login',
-templateUrl: './login.component.html',
-styleUrl: './login.component.css'
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent {
 
     firebasetsAuth: FirebaseTSAuth;
-    private router: Router;
 
-    constructor() { 
-        
+    constructor(private router: Router) { 
         this.firebasetsAuth = new FirebaseTSAuth();
-        this.router = new Router();
-      
+    }
+
+    ngOnInit() {
+        this.firebasetsAuth.getAuth().onAuthStateChanged(user => {
+            if (user) {
+                this.router.navigate(['feed']);
+            }else{
+                this.router.navigate(['']);
+            }
+        });
     }
 
     toLoginSubmit(
@@ -32,7 +40,6 @@ export class LoginComponent {
                 email: email,
                 password: password,
                 onComplete: (uc) => {
-                    alert("Logged in")
                     this.router.navigate(['feed']);
                 },
                 onFail: (err) => {
