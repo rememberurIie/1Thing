@@ -12,6 +12,7 @@ export class AppComponent {
 
     auth = new FirebaseTSAuth();
     router = new Router();
+    userDocument: any;
 
     constructor(){
     }

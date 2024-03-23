@@ -1,14 +1,9 @@
-<!-- navbar.component.html -->
-
 <nav class="navbar">
-    <div class="logo">
-      <!-- Your logo here -->
-    </div>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a (click)="toLogout()">logout</a></li>
-    </ul>
+  <div class="logo">
+    <!-- Your logo here -->
+  </div>
+  <ul class="nav-links" >
+    <li><a>Hello, {{ userDocument?.username }}</a></li>
+    <li><a (click)="toLogout()">logout</a></li>
+  </ul>
 </nav>
-  

@@ -14,6 +14,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    justify-content: right;
+    text-align: right;
   }
   
   .nav-links li {
