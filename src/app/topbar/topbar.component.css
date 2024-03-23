@@ -1,13 +1,17 @@
-/* navbar.component.css */
-
 .navbar {
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
-    background-color: #b19cd9; /* Pastel purple background color */
-    padding: 20px;
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+  background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212)); /* Pastel purple background color */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
+}
   
   .navbar .logo {
-    /* Style your logo as needed */
+    margin-top: -8px;
+    text-align: left;
+    justify-content: center; 
+    position: absolute;
+    
   }
   
   .nav-links {
@@ -29,7 +33,7 @@
   
   .nav-links li a {
     text-decoration: none;
-    color: white; /* Text color for links */
+    color: rgb(68, 68, 68); /* Text color for links */
     font-weight: bold;
   }
   

@@ -1,0 +1,20 @@
+.navbar {
+    position: fixed;
+    width: 80%;
+    margin: 1.5em auto; /* Center align the navbar */
+    z-index: 1000;
+    background-color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.feed-container,
+.posts-container {
+    padding-top: 70px;
+    margin: 0 auto;
+}
+
+.footer{
+    padding-bottom: 40px;
+}
+

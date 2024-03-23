@@ -1,0 +1,40 @@
+#photo-upload {
+    display: none;
+}
+
+textarea {
+    font-size: 1.5em;
+    padding: 1em;
+    resize: none;
+    width: 250px;
+    min-height: 200px;
+    border: none;
+    outline: none;
+}
+
+#post-preview {
+    text-align: left;
+    margin-top: 1em;
+    margin-left: 1.5em;
+}
+
+#post-preview-image {
+    object-fit: cover;
+    object-position: center;
+    width: 150px;
+    height: 100px;
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 1em;
+    border: 1px dashed gray;
+}
+
+mat-card{
+    display: flex;
+    margin-top: 50px;
+    margin-right: 30%;
+    margin-left: 30%;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
+}

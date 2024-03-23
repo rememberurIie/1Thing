@@ -17,9 +17,10 @@ import { TopbarComponent } from './topbar/topbar.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 
@@ -40,8 +41,9 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule 
+    MatDialogModule,
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync()

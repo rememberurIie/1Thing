@@ -1,0 +1,28 @@
+.action-item {
+    margin-left: .5em;
+    cursor: pointer;
+}
+
+mat-card{
+    display: flex;
+    margin-top: 40px;
+    margin-right: 30%;
+    margin-left: 30%;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
+}
+
+mat-card-header{
+    padding: 1.25em;
+}
+
+mat-card-content{
+    padding-left: 1.25em;
+    padding-top: -0.25em;
+}
+
+img{
+    border-radius: 5px;
+    margin: 20px;
+}
