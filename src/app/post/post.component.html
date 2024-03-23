@@ -1,9 +1,9 @@
 <mat-card>
 
-    <img mat-card-image src="{{postData?.imageUrl}}">
+    <img *ngIf="postData?.imageUrl" mat-card-image src="{{postData?.imageUrl}}">
 
     <mat-card-content>
-        {{postData?.comment}}
+        <b>{{creatorUsername}}</b>  {{postData?.comment}}
     </mat-card-content>
 
     <mat-card-actions>
