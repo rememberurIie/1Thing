@@ -14,7 +14,7 @@ export class TopbarComponent{
 
   auth = new FirebaseTSAuth();
   firestore = new FirebaseTSFirestore();
-  userDocument: UserDocument | null = null;
+  private static userDocument: UserDocument | null = null;
 
   
   constructor(private router: Router) {     
@@ -26,7 +26,7 @@ export class TopbarComponent{
               this.getUserProfile();
             },
             whenSignedOut: user => {
-
+              TopbarComponent.userDocument = null;
             },
             whenSignedInAndEmailNotVerified: user => {
             },
@@ -41,13 +41,27 @@ export class TopbarComponent{
     )
   }
 
+  toTop(){
+    this.router.navigate(['feed']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  public static getUserDocument(){
+    return TopbarComponent.userDocument;
+  }
+
+  getUsername(){
+    return TopbarComponent.userDocument?.username;
+  }
+
   getUserProfile(){
     this.firestore.listenToDocument(
     {
       name: "Getting Document",
       path: [ "Users", this.auth?.getAuth()?.currentUser?.uid || '{}'],
       onUpdate: (result) => {
-        this.userDocument = <UserDocument>result.data();
+        TopbarComponent.userDocument = <UserDocument>result.data();
+        TopbarComponent.userDocument.userId = this.auth?.getAuth()?.currentUser?.uid || '{}'
       }
     })
   }
@@ -58,11 +72,12 @@ export class TopbarComponent{
   }
 
   getProfile(){
-    return this.userDocument?.username;
+    return TopbarComponent.userDocument?.username;
   }
 }
 
 export interface UserDocument {
   publicName: string;
   username: string;
+  userId: string;
 }

@@ -1,5 +1,7 @@
+body{
+  background: #f3f2f2;
+}
 .navbar {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
   background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212)); /* Pastel purple background color */
   padding: 20px;
   border-radius: 20px;
@@ -33,7 +35,7 @@
   
   .nav-links li a {
     text-decoration: none;
-    color: rgb(68, 68, 68); /* Text color for links */
+    color: rgb(32, 32, 32); /* Text color for links */
     font-weight: bold;
   }
   

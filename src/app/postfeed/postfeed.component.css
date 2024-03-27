@@ -3,13 +3,18 @@
 }
 
 textarea {
-    font-size: 1.5em;
+    font-size: 15px;
     padding: 1em;
-    resize: none;
-    width: 250px;
     min-height: 200px;
+    max-width: 100%;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 717px;
+    height: 130px;
     border: none;
     outline: none;
+    resize: none;
+    
 }
 
 #post-preview {

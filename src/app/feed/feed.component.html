@@ -1,12 +1,14 @@
-<div class="navbar">
-    <app-topbar></app-topbar>
-</div>
-<div class="posts-container">
-    <app-postfeed></app-postfeed>
-</div>
-<div>
-    <app-post *ngFor="let post of posts" [postData]="post"></app-post>
-</div>
-<div class="footer">
-    
-</div>
+<body>
+    <div class="navbar">
+        <app-topbar></app-topbar>
+    </div>
+    <div class="posts-container">
+        <app-postfeed></app-postfeed>
+    </div>
+    <div>
+        <app-post *ngFor="let post of posts" [postData]="post"></app-post>
+    </div>
+    <div class="footer">
+        
+    </div>
+</body>

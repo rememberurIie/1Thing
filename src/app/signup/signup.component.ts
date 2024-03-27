@@ -22,13 +22,11 @@ export class SignupComponent {
   }
 
   ToSubmitSignup(
-    signupName: HTMLInputElement,
     signupUsername: HTMLInputElement,
     signupEmail: HTMLInputElement,
     signupPassword: HTMLInputElement,
     signupConfirmPassword: HTMLInputElement
   ) {
-    const name = signupName.value;
     const username = signupUsername.value;
     const email = signupEmail.value;
     const password = signupPassword.value;
@@ -51,13 +49,11 @@ export class SignupComponent {
                 path: ["Users", user.uid],
 
                 data: { 
-                    publicName: name,
                     username: username
                 },
 
                 onComplete: (docId) => {
                     alert("Profile Created");
-                    signupName.value = "";
                     signupUsername.value = "";
                     this.router.navigate(['']);
                 },
