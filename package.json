@@ -33,6 +33,7 @@
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-svg-icons": "^2.0.0",
     "@progress/kendo-theme-default": "^7.2.0",
+    "@types/firebase": "^3.2.1",
     "firebase": "^10.9.0",
     "firebasets": "^1.2.13",
     "rxjs": "~7.8.0",

@@ -2,21 +2,6 @@
     display: none;
 }
 
-textarea {
-    font-size: 15px;
-    padding: 1em;
-    min-height: 200px;
-    max-width: 100%;
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 717px;
-    height: 130px;
-    border: none;
-    outline: none;
-    resize: none;
-    
-}
-
 #post-preview {
     text-align: left;
     margin-top: 1em;
@@ -36,10 +21,38 @@ textarea {
 
 mat-card{
     display: flex;
+    
     margin-top: 50px;
     margin-right: 30%;
     margin-left: 30%;
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
+}
+
+textarea {
+    font-size: 15px;
+    padding: 1em;
+    min-height: 200px;
+    min-width: 85%;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: auto;
+    height: 130px;
+    border: none;
+    outline: none;
+    resize: none;
+    
+}
+
+@media screen and (max-width: 768px) {
+    mat-card {
+        width: 80%; /* Adjust as necessary */
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+    textarea {
+        width: 80%; /* Adjust as necessary */
+        
+    }
 }

@@ -4,6 +4,7 @@ import { FirebaseTSFirestore, OrderBy, Where} from 'firebasets/firebasetsFiresto
 import { MatDialog } from '@angular/material/dialog';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { TopbarComponent } from '../topbar/topbar.component';
+import { QuerySnapshot } from 'firebase/firestore';
 
 @Component({
   selector: 'app-post',
@@ -22,6 +23,9 @@ export class PostComponent implements OnInit {
   likes : Like[] = [];
   likeCount: number = 0;
 
+  clicked = false;
+
+
   constructor(private dialog: MatDialog){
 
   }
@@ -29,7 +33,6 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.getCreatorInfo();
     this.getComments();
-    this.getLike();
   }
 
   getCreatorInfo(){
@@ -89,66 +92,6 @@ export class PostComponent implements OnInit {
       }
     );
   }
-
- /*
-  onLikeClick() {
-    this.firestore.listenToCollection(
-      {
-        name: "Likes",
-        path: ["Posts", this.postData!.postId , "Likes"],
-        where: [],
-        onUpdate: (result) => {
-          result.forEach(doc => {
-            const likeData = doc.data();
-            const creatorUserId = likeData['creatorUserId'];
-
-            if (creatorUserId === TopbarComponent.getUserDocument()?.userId) {
-              this.firestore.delete({ 
-                path: ["Posts", this.postData!.postId , "Likes" , doc.id] });
-            } else {
-              this.firestore.create(
-                {
-                  path: ["Posts", this.postData!.postId , "Likes"],
-                  data: {
-                      creatorUserId: TopbarComponent.getUserDocument()?.userId,
-                      timestamp: FirebaseTSApp.getFirestoreTimestamp()
-                    },
-                  }
-                );
-              }
-            }
-          )
-        }
-      }
-    )
-  }
-*/
-
-  onLikeClick() {
-  this.firestore.create(
-    {
-      path: ["Posts", this.postData!.postId , "Likes"],
-      data: {
-          creatorUserId: TopbarComponent.getUserDocument()?.userId,
-          timestamp: FirebaseTSApp.getFirestoreTimestamp()
-        },
-      }
-    );
-  }
-
-  getLike() {
-    this.firestore.listenToCollection(
-      {
-        name: "Post Likes",
-        path: ["Posts", this.postData!.postId , "Likes"],
-        where: [],
-        onUpdate: (result) => {
-          this.likeCount = result.size;
-        }
-      }
-    )
-  }
-
 }
 
 export interface Comment {
@@ -161,7 +104,6 @@ export interface Comment {
 }
 
 export interface Like {
-  creatorId: string;
   timestamp: firebase.default.firestore.Timestamp
   likeCount: number;
 }
