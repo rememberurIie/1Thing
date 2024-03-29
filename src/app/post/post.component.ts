@@ -20,10 +20,13 @@ export class PostComponent implements OnInit {
   showReply: boolean = false;
   comments : Comment[] = [];
   commentCount: number = 0;
-  likes : Like[] = [];
+
+  likes : likeList[] = [];
   likeCount: number = 0;
 
-  clicked = false;
+  likeClicked = false;
+
+  isFirestoreOperationInProgress = false;
 
 
   constructor(private dialog: MatDialog){
@@ -33,6 +36,8 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.getCreatorInfo();
     this.getComments();
+    this.getLike();
+    this.getLikeList();
   }
 
   getCreatorInfo(){
@@ -92,7 +97,87 @@ export class PostComponent implements OnInit {
       }
     );
   }
+
+  getLikeList() {
+
+    this.likes = []; // Clear the likes array before fetching new likes
+
+    this.firestore.getCollection({
+        path: ["Posts", this.postData!.postId, "Likes"],
+        where: [],
+        onComplete: (result) => {
+            result.docs.forEach(doc => {
+              let likes = <likeList>doc.data();
+              likes.likeId = doc.id;
+              this.likes.push(likes);
+              if (this.likes.find(like => like.creatorUserId === TopbarComponent.getUserDocument()?.userId)){
+                this.likeClicked = true;
+              }else{
+                this.likeClicked = false;
+              }
+            }
+          );
+        },
+      }
+      
+    );
+  }
+
+
+  onClickLike() {
+
+    if (this.isFirestoreOperationInProgress) {
+        return;
+    }
+
+    this.isFirestoreOperationInProgress = true;
+    const likeToDelete = this.likes.find(like => like.creatorUserId === TopbarComponent.getUserDocument()?.userId);
+
+    if (likeToDelete) {
+        this.firestore.delete(
+          {
+            path: ["Posts", this.postData!.postId, "Likes", likeToDelete.likeId]
+          }
+        ).then(() => {
+            this.getLikeList();
+            this.isFirestoreOperationInProgress = false;
+            this.likeClicked = false;
+        })
+        
+    } else {
+        this.firestore.create(
+          {
+            path: ["Posts", this.postData!.postId, "Likes"],
+            data: {
+                creatorUserId: TopbarComponent.getUserDocument()?.userId,
+                timestamp: FirebaseTSApp.getFirestoreTimestamp()
+            },
+          }
+        ).then(() => {
+            this.getLikeList();
+            this.isFirestoreOperationInProgress = false;
+            this.likeClicked = true;
+        })
+    }
 }
+
+
+  getLike() {
+    this.firestore.listenToCollection(
+      {
+        name: "Post Likes",
+        path: ["Posts", this.postData!.postId , "Likes"],
+        where: [],
+        onUpdate: (result) => {
+          this.likeCount = result.size;
+        }
+      }
+    )
+  }
+}
+
+  
+
 
 export interface Comment {
   creatorId: string;
@@ -103,7 +188,7 @@ export interface Comment {
   likeCount: number;
 }
 
-export interface Like {
-  timestamp: firebase.default.firestore.Timestamp
-  likeCount: number;
+export interface likeList {
+  creatorUserId: string;
+  likeId: string;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
@@ -9,16 +9,41 @@ import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFi
   styleUrls: ['./signup.component.css'] // Correct the property name to styleUrls
 })
 
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
   firestore: FirebaseTSFirestore;
   firebasetsAuth: FirebaseTSAuth;
   private router: Router;
 
+  users: userData [] = [];
+
   constructor(router: Router) { 
     this.firestore = new FirebaseTSFirestore();
     this.firebasetsAuth = new FirebaseTSAuth();
     this.router = router; // Inject the router correctly
+  }
+  ngOnInit(): void {
+    this.getUserlists()
+  }
+
+  getUserlists(){
+    this.firestore.getCollection(
+      {
+        path: ["Users"],
+        where: [
+        ],
+        onComplete: (result) => {
+          result.docs.forEach(
+            doc => {
+              let user = <userData>doc.data();
+              user.uid = doc.id;
+              this.users.push(user);
+              console.log(user.username)
+            }
+          )
+        }
+      }
+    )
   }
 
   ToSubmitSignup(
@@ -31,54 +56,58 @@ export class SignupComponent {
     const email = signupEmail.value;
     const password = signupPassword.value;
     const confirmPassword = signupConfirmPassword.value;
+
+    if (this.users.some(user => user.username === username)) {
+      alert("Username is already in use.");
+    }
+
+     else {
+      if (this.isAMatch(password, confirmPassword)) {
+
+        this.firebasetsAuth.createAccountWith({
+          email: email,
+          password: password,
   
-    if (this.isAMatch(password, confirmPassword)) {
-
-      this.firebasetsAuth.createAccountWith({
-        email: email,
-        password: password,
-
-        onComplete: (authResult) => {
+          onComplete: (authResult) => {
 
             const user = authResult.user;
-            alert("Registered Successfully");
 
             if (user) {
             this.firestore.create({
 
-                path: ["Users", user.uid],
+              path: ["Users", user.uid],
 
-                data: { 
-                    username: username
-                },
+              data: { 
+                  username: username
+              },
 
-                onComplete: (docId) => {
-                    alert("Profile Created");
-                    signupUsername.value = "";
-                    this.router.navigate(['']);
-                },
+              onComplete: (docId) => {
+                  alert("Registered Successfully");
+                  signupUsername.value = "";
+                  this.router.navigate(['']);
+              },
 
-                onFail: (err) => {
-                    console.error("Firestore Error:", err);
-                    alert(err);
-                }
+              onFail: (err) => {
+                  alert(err);
+              }
 
             });
-            } else {
-                console.error("User object is null.");
-                alert("Failed to create profile. Please try again.");
-            }
-        },
-        onFail: (err) => {
-          console.error("Authentication Error:", err);
-          alert("Failed to create profile. Please try again.");
-        }
-      });
-      
-    } else {
-      alert("Passwords do not match.");
+              } else {
+                  alert("User object is null.");
+              }
+          },
+          onFail: (err) => {
+            alert(err);
+          }
+        });
+        
+      } else {
+        alert("Passwords do not match.");
+      }
     }
   }
+    
+  
   
   
   
@@ -90,4 +119,9 @@ export class SignupComponent {
   toLogin() {
     this.router.navigate(['']); // Adjust route as needed
   }
+}
+
+export interface userData{
+  uid: string;
+  username: string;
 }
