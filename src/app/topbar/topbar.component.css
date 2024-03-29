@@ -1,45 +1,61 @@
-body{
+body {
   background: #f3f2f2;
 }
+
+@keyframes smoothSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .navbar {
   background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212)); /* Pastel purple background color */
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
+  animation: smoothSlideDown 1s ease forwards; /* Apply smooth slide-down animation */
+  opacity: 0; /* Set initial opacity to 0 */
 }
-  
-  .navbar .logo {
-    margin-top: -8px;
-    text-align: left;
-    justify-content: center; 
-    position: absolute;
-    
-  }
-  
-  .nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: right;
-    text-align: right;
-  }
-  
-  .nav-links li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  .nav-links li:last-child {
-    margin-right: 0;
-  }
-  
-  .nav-links li a {
-    text-decoration: none;
-    color: rgb(32, 32, 32); /* Text color for links */
-    font-weight: bold;
-  }
-  
-  .nav-links li a:hover {
-    color: #ffffff; /* Text color on hover */
-  }
-  
+
+.navbar.show {
+  opacity: 1; /* Change opacity to 1 when navbar is shown */
+}
+
+.navbar .logo {
+  margin-top: -8px;
+  text-align: left;
+  justify-content: center; 
+  position: absolute;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: right;
+  text-align: right;
+}
+
+.nav-links li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.nav-links li:last-child {
+  margin-right: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: rgb(32, 32, 32); /* Text color for links */
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  color: #ffffff; /* Text color on hover */
+}
