@@ -41,7 +41,6 @@ export class FeedComponent {
         path: ["Posts"],
         where: [
           new OrderBy("timestamp", "desc"),
-          new Limit(10)
         ],
         onComplete: (result) => {
           result.docs.forEach(
@@ -61,6 +60,7 @@ export class FeedComponent {
 }
 
 export interface PostData {
+  find(arg0: (like: any) => boolean): unknown;
   comment: string;
   creatorId: string;
   imageUrl?: string;

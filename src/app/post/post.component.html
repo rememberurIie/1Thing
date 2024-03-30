@@ -15,7 +15,7 @@
             {{ showReply ? 'chat_bubble' : 'chat_bubble_outline' }}
         </mat-icon>&nbsp;{{ commentCount }}
 
-        <mat-icon (click)="ondeletePost()" class="action-item" [ngStyle]="{'color':'red'}">delete_outline</mat-icon>
+        <mat-icon *ngIf="this.showDeleteButton === true" (click)="ondeletePost()" class="action-item" [ngStyle]="{'color':'red'}">delete_outline</mat-icon>
 
     </mat-card-actions>
     

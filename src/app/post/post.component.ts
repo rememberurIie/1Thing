@@ -6,6 +6,8 @@ import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { QuerySnapshot } from 'firebase/firestore';
 import { reload } from 'firebase/auth';
+import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+
 
 @Component({
   selector: 'app-post',
@@ -26,9 +28,11 @@ export class PostComponent implements OnInit {
   likeCount: number = 0;
 
   likeClicked = false;
+  showDeleteButton = false;
 
   isFirestoreOperationInProgress = false;
 
+  auth = new FirebaseTSAuth();
 
   constructor(private dialog: MatDialog){
 
@@ -39,6 +43,7 @@ export class PostComponent implements OnInit {
     this.getComments();
     this.getLike();
     this.getLikeList();
+    this.getDeleteButton();
   }
 
   getCreatorInfo(){
@@ -176,6 +181,16 @@ export class PostComponent implements OnInit {
       }
     )
   }
+
+  getDeleteButton() {
+    const checkDelete = this.postData!.creatorId === this.auth?.getAuth()?.currentUser?.uid;
+    if (checkDelete === true) {
+      this.showDeleteButton = true;
+    } else {
+      this.showDeleteButton = false;
+    }
+  }
+  
 
   ondeletePost(){
     const check = window.confirm("Do you want to delete post ?")
