@@ -91,3 +91,7 @@ input {
     scrollbar-width: none;
     overflow-y: scroll;
 }
+
+mat-icon.mat-icon.notranslate.action-item.material-icons.mat-ligature-font.mat-red.mat-icon-no-color {
+    color: rgb(255, 0, 157);
+}

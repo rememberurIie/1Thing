@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { TopbarComponent } from '../topbar/topbar.component';
 import { QuerySnapshot } from 'firebase/firestore';
+import { reload } from 'firebase/auth';
 
 @Component({
   selector: 'app-post',
@@ -56,6 +57,7 @@ export class PostComponent implements OnInit {
   toggleReply() {
     this.showReply = !this.showReply;
   }
+
   
   onSendClick(commentInput: HTMLInputElement){
     if(!(commentInput.value.length > 0)) return;
@@ -100,7 +102,7 @@ export class PostComponent implements OnInit {
 
   getLikeList() {
 
-    this.likes = []; // Clear the likes array before fetching new likes
+    this.likes = [];
 
     this.firestore.getCollection({
         path: ["Posts", this.postData!.postId, "Likes"],
@@ -139,9 +141,9 @@ export class PostComponent implements OnInit {
             path: ["Posts", this.postData!.postId, "Likes", likeToDelete.likeId]
           }
         ).then(() => {
-            this.getLikeList();
             this.isFirestoreOperationInProgress = false;
             this.likeClicked = false;
+            this.getLikeList();
         })
         
     } else {
@@ -154,12 +156,12 @@ export class PostComponent implements OnInit {
             },
           }
         ).then(() => {
-            this.getLikeList();
             this.isFirestoreOperationInProgress = false;
             this.likeClicked = true;
+            this.getLikeList();
         })
     }
-}
+  }
 
 
   getLike() {
@@ -174,6 +176,21 @@ export class PostComponent implements OnInit {
       }
     )
   }
+
+  ondeletePost(){
+    const check = window.confirm("Do you want to delete post ?")
+    if (check == true){
+      this.firestore.delete({
+        path: ["Posts", this.postData!.postId]
+      ,
+      }
+      ).then(() => {
+        window.location.reload();
+      })
+    } else {
+
+    }
+  } 
 }
 
   

@@ -56,3 +56,26 @@ textarea {
         
     }
 }
+
+button#submit  {
+    -webkit-appearance: none;
+    width: auto;
+    min-width: 20px;
+    border-radius: 24px;
+    text-align: center;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #b08bf8;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.13);
+    border: none;
+    transition: all 0.3s ease;
+    outline: 0;
+  }
+
+  button#img  {
+    margin-top: 5px;
+    margin-right: -10px;
+  }

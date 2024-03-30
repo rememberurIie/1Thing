@@ -1,5 +1,4 @@
 body {
-  background: #f3f2f2;
 }
 
 @keyframes smoothSlideDown {
@@ -52,10 +51,12 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: rgb(32, 32, 32); /* Text color for links */
+  color: rgb(32, 32, 32);
   font-weight: bold;
+  cursor: default;
 }
 
-.nav-links li a:hover {
-  color: #ffffff; /* Text color on hover */
+.nav-links li a#logout:hover {
+  color: #ff3f3f;
+  cursor: pointer;
 }

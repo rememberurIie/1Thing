@@ -1,5 +1,5 @@
 <mat-card>
-    <img *ngIf="postData?.imageUrl" mat-card-image src="{{postData?.imageUrl}}">
+    <img style="padding-bottom: 5px;" *ngIf="postData?.imageUrl" mat-card-image src="{{postData?.imageUrl}}">
     
     <mat-card-content>
         <b>{{creatorUsername}}</b>  {{postData?.comment}}
@@ -7,13 +7,15 @@
 
     <mat-card-actions>
         
-        <mat-icon (click)="onClickLike()" class="action-item" color="warn">
+        <mat-icon (click)="onClickLike()" class="action-item" [color]="likeClicked ? 'red' : 'primary'">
             {{ likeClicked ? 'favorite' : 'favorite_outline' }}
         </mat-icon>&nbsp;{{ likeCount }}
 
         <mat-icon (click)="toggleReply()" class="action-item" color="warn">
             {{ showReply ? 'chat_bubble' : 'chat_bubble_outline' }}
         </mat-icon>&nbsp;{{ commentCount }}
+
+        <mat-icon (click)="ondeletePost()" class="action-item" [ngStyle]="{'color':'red'}">delete_outline</mat-icon>
 
     </mat-card-actions>
     
