@@ -56,7 +56,8 @@ body {
   cursor: default;
 }
 
-.nav-links li a#logout:hover {
-  color: #ff3f3f;
+.nav-links li img#logout_pic{
+  height: 20px;
+  margin-bottom: -4px;
   cursor: pointer;
 }
