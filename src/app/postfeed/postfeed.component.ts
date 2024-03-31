@@ -24,6 +24,7 @@ export class PostfeedComponent {
    }
 
   ngOnInit(){
+    console.log(this.selectedImageFile);
   }
 
   onPostClick(commentInput: HTMLTextAreaElement) {
@@ -41,6 +42,7 @@ export class PostfeedComponent {
   }
 
   uploadImagePost(comment: string){
+
     let postId = this.firestore.genDocId();
     this.storage.upload(
     {
@@ -101,18 +103,11 @@ export class PostfeedComponent {
     };
   }
 
-
-
-
-
-
-
-
-
-
   onPhotoSelected(photoSelector: HTMLInputElement) {
 
     this.selectedImageFile = photoSelector.files![0];
+
+    console.log(this.selectedImageFile);
 
     if(!this.selectedImageFile) return; 
 
@@ -128,7 +123,12 @@ export class PostfeedComponent {
         if (readableString) {
           postPreviewImage.src = readableString;
         }
-    });
+      }
+    );
+  }
+
+  onClickDeletePhoto() {
+    this.selectedImageFile = null;
   }
 
 }

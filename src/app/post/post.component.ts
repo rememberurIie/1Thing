@@ -44,6 +44,7 @@ export class PostComponent implements OnInit {
     this.getLike();
     this.getLikeList();
     this.getDeleteButton();
+
   }
 
   getCreatorInfo(){
@@ -52,7 +53,6 @@ export class PostComponent implements OnInit {
         path: ["Users", this.postData!.creatorId],
         onComplete: result => {
             let userDocument = result.data();
-            this.creatorName = userDocument!['publicName'];
             this.creatorUsername = userDocument!['username'];
         }
       }
@@ -63,7 +63,8 @@ export class PostComponent implements OnInit {
     this.showReply = !this.showReply;
   }
 
-  
+
+  //createcomment
   onSendClick(commentInput: HTMLInputElement){
     if(!(commentInput.value.length > 0)) return;
     this.firestore.create(

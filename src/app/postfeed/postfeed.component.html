@@ -6,9 +6,12 @@
                placeholder="Type Message..."></textarea>
     </div>
 
-    <div *ngIf="selectedImageFile" 
-        id="post-preview">
-        <img id="post-preview-image"/>
+    <div *ngIf="selectedImageFile" id="post-preview">
+        <button mat-fab id="delete-img" (click)="onClickDeletePhoto()">X</button>
+    </div>
+    
+    <div *ngIf="selectedImageFile" id="post-preview">
+        <img id="post-preview-image">
     </div>
 
     <mat-card-actions align="end">
