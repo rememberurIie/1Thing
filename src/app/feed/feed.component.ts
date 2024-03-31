@@ -5,6 +5,7 @@ import { PostComponent } from '../post/post.component';
 import { FirebaseTSFirestore, Limit, OrderBy } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
 
 import { TopbarComponent } from '../topbar/topbar.component';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-feed',
@@ -65,5 +66,7 @@ export interface PostData {
   creatorId: string;
   imageUrl?: string;
   postId : string;
+  timestamp : firebase.default.firestore.Timestamp;
+  
 }
 

@@ -17,6 +17,8 @@
 
         <mat-icon *ngIf="this.showDeleteButton === true" (click)="ondeletePost()" class="action-item" [ngStyle]="{'color':'red'}">delete_outline</mat-icon>
 
+        <p id="time">&nbsp;&nbsp;&nbsp;{{ postData?.timestamp?.toDate() | date:'dd/MM/yyyy HH:mm' }}</p>
+
     </mat-card-actions>
     
 

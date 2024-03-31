@@ -13,16 +13,16 @@ body {
 }
 
 .navbar {
-  background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212)); /* Pastel purple background color */
+  background: linear-gradient(to right, rgb(151, 150, 240), rgb(251, 199, 212));
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.404);
-  animation: smoothSlideDown 1s ease forwards; /* Apply smooth slide-down animation */
-  opacity: 0; /* Set initial opacity to 0 */
+  animation: smoothSlideDown 1s ease forwards;
+  opacity: 0;
 }
 
 .navbar.show {
-  opacity: 1; /* Change opacity to 1 when navbar is shown */
+  opacity: 1;
 }
 
 .navbar .logo {

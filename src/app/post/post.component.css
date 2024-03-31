@@ -38,13 +38,14 @@ mat-card {
 }
 
 mat-card-actions{
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     font-size: 15px;
 }
 
 mat-card-content{
     padding-left: 1.25em;
     margin-top: 5px;
+    margin-bottom: -5px;
 }
 
 
@@ -87,6 +88,7 @@ input {
 }
 
 #reply-box{
+    margin-top: -5px;
     -ms-overflow-style: none; 
     scrollbar-width: none;
     overflow-y: scroll;
@@ -94,4 +96,9 @@ input {
 
 mat-icon.mat-icon.notranslate.action-item.material-icons.mat-ligature-font.mat-red.mat-icon-no-color {
     color: rgb(255, 0, 157);
+}
+
+p#time{
+    font-size: 13px;
+    color: rgb(170, 170, 170);
 }

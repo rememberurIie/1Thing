@@ -216,7 +216,7 @@ export interface Comment {
   creatorId: string;
   creatorUsername: string;
   comment: string
-  timestamp: firebase.default.firestore.Timestamp
+  timestamp: firebase.default.firestore.Timestamp;
   commentCount: number;
   likeCount: number;
 }
